@@ -49,7 +49,7 @@ namespace XYPlotPluginSeq
 
         #region Private fields
 
-        private string _configFileName = "XYPlotPlugin.config";
+        private string _configFileName = "XYPlotPluginSeq.config";
 
         #endregion
 

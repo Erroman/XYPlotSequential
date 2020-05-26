@@ -8,7 +8,7 @@
     <ProjectGuid>{2C5BBD25-5F38-495D-BC5E-6DD7549A8A15}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>XYPlotPlugin</RootNamespace>
+    <RootNamespace>XYPlotPluginSeq</RootNamespace>
     <AssemblyName>XYPlotRegionSeq</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
