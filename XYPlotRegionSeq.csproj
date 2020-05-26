@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2C5BBD25-5F38-495D-BC5E-6DD7549A8A15}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XYPlotPlugin</RootNamespace>
+    <AssemblyName>XYPlotRegionSeq</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;LESSTHAN_NET30</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;LESSTHAN_NET30</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!-- Release -> SMath Release Manager -->
+    <SMathDir Condition=" '$(SMathDir)' == '' AND '$(Configuration)' == 'Release' ">..\..\..\Main\SMathStudio\SMath.Controls\bin\Debug\net20</SMathDir>
+    <!-- Debug -> development -->
+    <SMathDir Condition=" '$(SMathDir)' == '' AND '$(Configuration)' == 'Debug' ">C:\Program Files (x86)\SMath Studio</SMathDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SMath.Controls">
+      <HintPath>$(SMathDir)\SMath.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SMath.Manager">
+      <HintPath>$(SMathDir)\SMath.Manager.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SMath.Drawing">
+      <HintPath>$(SMathDir)\SMath.Drawing.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SMath.Math.Numeric">
+      <HintPath>$(SMathDir)\SMath.Math.Numeric.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="SMath.Math.Symbolic">
+      <HintPath>$(SMathDir)\SMath.Math.Symbolic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Enumerable.cs" />
+    <Compile Include="Enumerable.numeric.cs" />
+    <Compile Include="Functions\setprop.cs" />
+    <Compile Include="HashSet.cs" />
+    <Compile Include="IFunction.cs" />
+    <Compile Include="JSONParser.cs" />
+    <Compile Include="JXCharts\Chart2D.cs" />
+    <Compile Include="JXCharts\ChartArea.cs" />
+    <Compile Include="JXCharts\ChartStyle.cs" />
+    <Compile Include="JXCharts\Series.cs" />
+    <Compile Include="JXCharts\Grid.cs" />
+    <Compile Include="JXCharts\Legend.cs" />
+    <Compile Include="JXCharts\LineStyle.cs" />
+    <Compile Include="JXCharts\PointD.cs" />
+    <Compile Include="JXCharts\Shape.cs" />
+    <Compile Include="JXCharts\SymbolStyle.cs" />
+    <Compile Include="JXCharts\TextLabel.cs" />
+    <Compile Include="JXCharts\Title.cs" />
+    <Compile Include="JXCharts\Axis.cs" />
+    <Compile Include="JXCharts\XAxis.cs" />
+    <Compile Include="JXCharts\XYLabel.cs" />
+    <Compile Include="JXCharts\Y2Axis.cs" />
+    <Compile Include="JXCharts\YAxis.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="FormFormat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFormat.Designer.cs">
+      <DependentUpon>FormFormat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyCollectionEditor.cs" />
+    <Compile Include="Plugin.cs" />
+    <Compile Include="PropertiesSource.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="XYPlot.cs" />
+    <Compile Include="PluginRegion.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FormFormat.resx">
+      <DependentUpon>FormFormat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="DeployExtension">
+    <!-- copy anything from the build path to the SMath Studio extension path -->
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="AssemblyInfo" />
+    </GetAssemblyIdentity>
+    <GetAssemblyIdentity AssemblyFiles="$(SMathDir)\SMath.Manager.dll">
+      <Output TaskParameter="Assemblies" ItemName="ProgramInfo" />
+    </GetAssemblyIdentity>
+    <PropertyGroup>
+      <ProgramVersion>%(ProgramInfo.Version)</ProgramVersion>
+      <ConfigFileName>config.$(ProgramVersion.Replace(".", "_")).ini</ConfigFileName>
+      <!-- SS portable -->
+      <PluginPath Condition=" Exists('$(SMathDir)\portable.version') ">$(SMathDir)\extensions\plugins\$(ProjectGuid.TrimStart("{").TrimEnd("}"))</PluginPath>
+      <!-- SS from installer -->
+      <PluginPath Condition=" '$(PluginPath)' == '' ">$(APPDATA)\SMath\extensions\plugins\$(ProjectGuid.TrimStart("{").TrimEnd("}"))</PluginPath>
+    </PropertyGroup>
+    <ItemGroup>
+      <BuildFiles Include="$(TargetDir)\*.*" />
+      <ConfigFileContent Include="%(AssemblyInfo.Version)" />
+      <!-- extension status (0: enabled; 2: disabled; 1: removed) -->
+      <ConfigFileContent Include="0" />
+      <!-- assembly filename -->
+      <ConfigFileContent Include="$(TargetFileName)" />
+    </ItemGroup>
+    <!-- uncomment line below to keep clean the extension directory -->
+    <!-- -->
+    <RemoveDir Condition="'$(Configuration)' == 'Debug'" Directories="$(PluginPath)" />
+    <!-- -->
+    <Copy SourceFiles="@(BuildFiles)" DestinationFolder="$(PluginPath)\%(AssemblyInfo.Version)" ContinueOnError="false" />
+    <WriteLinesToFile File="$(PluginPath)\$(ConfigFileName)" Lines="@(ConfigFileContent)" Overwrite="true" />
+  </Target>
+  <Target Name="AfterBuild">
+    <CallTarget Condition=" '$(Configuration)' == 'Debug' " Targets="DeployExtension" />
+  </Target>
+</Project>

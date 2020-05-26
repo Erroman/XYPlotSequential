@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?application progid="SMath Studio Desktop" version="0.99.7109.29964"?>
+<worksheet xmlns="http://smath.info/schemas/worksheet/1.0">
+  <settings ppi="96">
+    <identity>
+      <id>0b995eb1-e9bb-488f-9bc3-8bc8bd1ccf93</id>
+      <revision>81</revision>
+    </identity>
+    <calculation>
+      <precision>4</precision>
+      <exponentialThreshold>5</exponentialThreshold>
+      <trailingZeros>false</trailingZeros>
+      <significantDigitsMode>false</significantDigitsMode>
+      <roundingMode>0</roundingMode>
+      <fractions>decimal</fractions>
+    </calculation>
+    <pageModel active="false" viewMode="2" printGrid="false" printAreas="true" simpleEqualsOnly="false" printBackgroundImages="true">
+      <paper id="9" orientation="Portrait" width="827" height="1169" />
+      <margins left="39" right="39" top="39" bottom="39" />
+      <header alignment="Center" color="#a9a9a9">&amp;[DATE] &amp;[TIME] - &amp;[FILENAME]</header>
+      <footer alignment="Center" color="#a9a9a9">&amp;[PAGENUM] / &amp;[COUNT]</footer>
+      <backgrounds />
+    </pageModel>
+    <dependencies>
+      <assembly name="SMath Studio Desktop" version="0.99.7109.29964" guid="a37cba83-b69c-4c71-9992-55ff666763bd" />
+      <assembly name="Math Region" version="0.99.7109.29964" guid="02f1ab51-215b-466e-a74d-5d8b1cf85e8d" />
+      <assembly name="SpecialFunctions" version="1.12.7109.29964" guid="2814e667-4e12-48b1-8d51-194e480eabc5" />
+      <assembly name="X-Y Plot Region (JXCharts)" version="0.2.7159.42688" guid="c12231ec-4873-43c1-a7d0-a167ebd17066" />
+    </dependencies>
+  </settings>
+  <regions type="content">
+    <region id="0" left="9" top="9" width="174" height="27" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">xmn</e>
+          <e type="operand">xmx</e>
+          <e type="operand">1</e>
+          <e type="operand">2</e>
+          <e type="function" args="4">mat</e>
+          <e type="operand">1</e>
+          <e type="operator" args="1">-</e>
+          <e type="operand">1</e>
+          <e type="operand">1</e>
+          <e type="operand">2</e>
+          <e type="function" args="4">mat</e>
+          <e type="operand">10</e>
+          <e type="operator" args="2">*</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="1" left="225" top="9" width="182" height="27" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">ymn</e>
+          <e type="operand">ymx</e>
+          <e type="operand">1</e>
+          <e type="operand">2</e>
+          <e type="function" args="4">mat</e>
+          <e type="operand">1</e>
+          <e type="operator" args="1">-</e>
+          <e type="operand">1</e>
+          <e type="operand">1</e>
+          <e type="operand">2</e>
+          <e type="function" args="4">mat</e>
+          <e type="operand">1.5</e>
+          <e type="operator" args="2">*</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="2" left="450" top="9" width="170" height="27" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">xtck</e>
+          <e type="operand">ytck</e>
+          <e type="operand">1</e>
+          <e type="operand">2</e>
+          <e type="function" args="4">mat</e>
+          <e type="operand">3</e>
+          <e type="operand">0.5</e>
+          <e type="operand">1</e>
+          <e type="operand">2</e>
+          <e type="function" args="4">mat</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="3" left="9" top="36" width="134" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">txt</e>
+          <e type="operand" style="string">sin(x)/x</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="4" left="153" top="36" width="126" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">xlbl</e>
+          <e type="operand" style="string">X-Axis</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="5" left="288" top="36" width="126" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">ylbl</e>
+          <e type="operand" style="string">Y-Axis</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="6" left="432" top="36" width="277" height="26" color="#000000" bgColor="#80ff00" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">4</e>
+          <e type="function" args="1">appVersion</e>
+        </input>
+        <result action="numeric">
+          <e type="operand" style="string">0.99.7109.29964</e>
+        </result>
+      </math>
+    </region>
+    <region id="7" left="9" top="63" width="254" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math optimize="2">
+        <input>
+          <e type="operand">fnt</e>
+          <e type="operand" style="string">Courier,12pt,style=Bold</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="8" left="270" top="63" width="110" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">grn</e>
+          <e type="operand" style="string">Green</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="9" left="387" top="63" width="118" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">blck</e>
+          <e type="operand" style="string">Black</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="10" left="513" top="63" width="150" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">blue</e>
+          <e type="operand" style="string">RoyalBlue</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="11" left="9" top="90" width="126" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">xyp</e>
+          <e type="operand" style="string">XYPlot1</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="12" left="144" top="90" width="166" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">xyxa</e>
+          <e type="operand" style="string">{xyp}.XAxis</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="13" left="333" top="90" width="166" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">xyya</e>
+          <e type="operand" style="string">{xyp}.YAxis</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="14" left="513" top="90" width="182" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">xyy2a</e>
+          <e type="operand" style="string">{xyp}.Y2Axis</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="15" left="9" top="117" width="174" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">xyttl</e>
+          <e type="operand" style="string">{xyp}.Title</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="16" left="189" top="117" width="158" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">xygd</e>
+          <e type="operand" style="string">{xyp}.Grid</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="17" left="360" top="117" width="190" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">xylbl</e>
+          <e type="operand" style="string">{xyp}.XYLabel</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="18" left="9" top="144" width="265" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyp}.Points</e>
+          <e type="operand">150</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="19" left="396" top="153" width="281" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyya}.Min</e>
+          <e type="operand" style="string">{ymn}</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="20" left="9" top="180" width="281" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyxa}.Min</e>
+          <e type="operand" style="string">{xmn}</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="21" left="396" top="180" width="281" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyya}.Max</e>
+          <e type="operand" style="string">{ymx}</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="22" left="9" top="207" width="281" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyxa}.Max</e>
+          <e type="operand" style="string">{xmx}</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="23" left="396" top="207" width="297" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyya}.Tick</e>
+          <e type="operand" style="string">{ytck}</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="24" left="9" top="234" width="297" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyxa}.Tick</e>
+          <e type="operand" style="string">{xtck}</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="25" left="396" top="243" width="281" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyy2a}.IsY2Axis</e>
+          <e type="operand">1</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="26" left="9" top="270" width="297" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyttl}.Text</e>
+          <e type="operand" style="string">{txt}</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="27" left="396" top="270" width="253" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyy2a}.Min</e>
+          <e type="operand">1</e>
+          <e type="operator" args="1">-</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="28" left="9" top="297" width="337" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyttl}.TitleFont</e>
+          <e type="operand" style="string">{fnt}</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="29" left="396" top="297" width="241" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyy2a}.Max</e>
+          <e type="operand">1</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="30" left="9" top="324" width="377" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyttl}.TitleFontColor</e>
+          <e type="operand" style="string">{grn}</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="31" left="396" top="324" width="273" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xyy2a}.Tick</e>
+          <e type="operand">0.25</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="32" left="9" top="360" width="265" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xygd}.IsXGrid</e>
+          <e type="operand">1</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="33" left="324" top="360" width="329" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xygd}.GridColor</e>
+          <e type="operand" style="string">Black</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="34" left="9" top="387" width="265" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xygd}.IsYGrid</e>
+          <e type="operand">1</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="35" left="324" top="387" width="313" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xygd}.GridThickness</e>
+          <e type="operand">2</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="36" left="9" top="423" width="337" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xylbl}.LabelFont</e>
+          <e type="operand" style="string">{fnt}</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="37" left="9" top="450" width="385" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xylbl}.LabelFontColor</e>
+          <e type="operand" style="string">{blue}</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="38" left="9" top="486" width="321" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xylbl}.XLabel</e>
+          <e type="operand" style="string">{xlbl}</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="39" left="9" top="513" width="321" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand" style="string">{xylbl}.YLabel</e>
+          <e type="operand" style="string">{ylbl}</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+    <region id="40" left="9" top="540" width="394" height="263" color="#000000" bgColor="#ffffff" fontSize="10">
+      <xyplot width="384" height="255" points="150" name="XYPlot1">
+        <propertiessource index="1" sourcetype="PropertyGrid" />
+        <grid gridcolor="Black" gridpattern="Dash" gridthickness="2" isxgrid="true" isygrid="true" />
+        <xaxes xmin="-10" xmax="10" xtick="3" decimalplaces="3" numberformat="General" />
+        <yaxes ymin="-1.5" ymax="1.5" ytick="0.5" decimalplaces="3" numberformat="General" />
+        <y2axes isy2axis="true" y2min="-1" y2max="1" y2tick="0.25" decimalplaces="3" numberformat="General" />
+        <title2d title="sin(x)/x" titlefont="Courier New, 12pt, style=Bold" titlefontcolor="Green" />
+        <xylabel labelfont="Courier New, 12pt, style=Bold" labelfontcolor="RoyalBlue" tickfont="Arial, 8pt" tickfontcolor="Black" xlabel="X-Axis" ylabel="Y-Axis" y2label="y2" />
+        <legend isbordervisible="true" islegendvisible="false" legendbackcolor="White" legendbordercolor="Black" legendfont="Arial, 8pt" legendposition="NorthEast" textcolor="Black" />
+        <traces>
+          <trace seriesname="" isy2data="false" isvisible="true" plotmethod="Lines" lineantialias="false" linecolor="Blue" linethickness="1" linepattern="Solid" symbolantialias="false" symbolsize="8" symboltype="None" symbolborderthickness="1" symbolbordercolor="Black" symbolfillcolor="White" />
+        </traces>
+        <input>
+          <e type="operand">t</e>
+          <e type="function" args="1">sin</e>
+          <e type="operand">t</e>
+          <e type="operator" args="2">/</e>
+        </input>
+      </xyplot>
+    </region>
+    <region id="41" left="0" top="1386" width="110" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">txt</e>
+          <e type="operand" style="string">Title</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="42" left="117" top="1386" width="158" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">fnt</e>
+          <e type="operand" style="string">Tahoma\002C\10pt</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="43" left="288" top="1386" width="86" height="24" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math>
+        <input>
+          <e type="operand">cl</e>
+          <e type="operand" style="string">Red</e>
+          <e type="operator" args="2">:</e>
+        </input>
+      </math>
+    </region>
+    <region id="44" left="0" top="1413" width="569" height="26" color="#000000" bgColor="#ffffff" fontSize="10">
+      <math evaluate="false">
+        <input>
+          <e type="operand" style="string">XYPlot1.Title</e>
+          <e type="operand" style="string">Text:'{txt}',Font:'{fnt}',Color:'{cl}'</e>
+          <e type="function" args="2">setprop</e>
+        </input>
+        <result action="numeric">
+          <e type="operand">1</e>
+        </result>
+      </math>
+    </region>
+  </regions>
+</worksheet>

@@ -1,0 +1,9 @@
+C:\Endeavours\SMath  Studio\XYPlotSequential\obj\Debug\XYPlotPlugin.FormFormat.resources
+C:\Endeavours\SMath  Studio\XYPlotSequential\obj\Debug\XYPlotPlugin.Properties.Resources.resources
+C:\Endeavours\SMath  Studio\XYPlotSequential\obj\Debug\XYPlotRegionSeq.csproj.GenerateResource.cache
+C:\Endeavours\SMath  Studio\XYPlotSequential\obj\Debug\XYPlotRegionSeq.csproj.CoreCompileInputs.cache
+C:\Endeavours\SMath  Studio\XYPlotSequential\bin\Debug\XYPlotRegionSeq.dll
+C:\Endeavours\SMath  Studio\XYPlotSequential\bin\Debug\XYPlotRegionSeq.pdb
+C:\Endeavours\SMath  Studio\XYPlotSequential\obj\Debug\XYPlotRegionSeq.dll
+C:\Endeavours\SMath  Studio\XYPlotSequential\obj\Debug\XYPlotRegionSeq.pdb
+C:\Endeavours\SMath  Studio\XYPlotSequential\obj\Debug\XYPlotRegionSeq.csprojAssemblyReference.cache
