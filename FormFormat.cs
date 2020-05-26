@@ -10,7 +10,7 @@ using SMath.Manager;
 using JXCharts;
 
 
-namespace XYPlotPlugin 
+namespace XYPlotPluginSeq 
 {
     public partial class FormFormat : Form
     {

@@ -19,7 +19,7 @@ using JXCharts;
 
 #endregion
 
-namespace XYPlotPlugin 
+namespace XYPlotPluginSeq 
 {    
     public class XYPlot : RegionHolder<Chart2D>
     {

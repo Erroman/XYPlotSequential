@@ -1,4 +1,4 @@
-﻿namespace XYPlotPlugin {
+﻿namespace XYPlotPluginSeq {
     partial class FormFormat {
         /// <summary>
         /// Required designer variable.

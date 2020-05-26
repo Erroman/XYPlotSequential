@@ -14,7 +14,7 @@ using SMath.Math.Numeric;
 
 #endregion
 
-namespace XYPlotPlugin
+namespace XYPlotPluginSeq
 {
     public class Plugin: IPluginLowLevelEvaluationFast, IPluginMathNumericEvaluation
     {

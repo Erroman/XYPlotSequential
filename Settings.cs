@@ -12,7 +12,7 @@ using System.Xml;
 using SMath.Manager;
 
 
-namespace XYPlotPlugin
+namespace XYPlotPluginSeq
 {
     public class FormSettings
     {

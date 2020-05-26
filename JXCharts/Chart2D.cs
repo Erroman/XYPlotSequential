@@ -13,7 +13,7 @@ using SMath.Math;
 using SMath.Manager;
 using SMath.Drawing;
 
-using XYPlotPlugin;
+using XYPlotPluginSeq;
 
 
 namespace JXCharts 
@@ -87,7 +87,7 @@ namespace JXCharts
 
         private void Initialize()
         {
-            _name = "XYPlot";
+            _name = "XYPlotModified";
             Points = 100;
 
             _lastKeyEventArgs = new KeyEventOptions();

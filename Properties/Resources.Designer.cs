@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace XYPlotPlugin.Properties {
+namespace XYPlotPluginSeq.Properties {
     using System;
     
     

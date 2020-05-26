@@ -3,7 +3,7 @@ using SMath.Math;
 using SMath.Math.Numeric;
 
 
-namespace XYPlotPlugin
+namespace XYPlotPluginSeq
 {
     public interface IFunction 
     {

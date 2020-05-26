@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace XYPlotPlugin
+namespace XYPlotPluginSeq
 {
     public static class Extensions
     {

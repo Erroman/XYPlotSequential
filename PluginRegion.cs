@@ -7,9 +7,9 @@ using SMath.Drawing;
 
 using JXCharts;
 
-using XYPlotPlugin.Properties;
+using XYPlotPluginSeq.Properties;
 
-namespace XYPlotPlugin
+namespace XYPlotPluginSeq
 {
     public class PluginRegion : IPluginCustomRegion
     {

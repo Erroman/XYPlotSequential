@@ -3,7 +3,7 @@ using System.ComponentModel.Design;
 using System.Windows.Forms;
 
 
-namespace XYPlotPlugin 
+namespace XYPlotPluginSeq 
 {
     public class MyCollectionEditor : CollectionEditor
     {

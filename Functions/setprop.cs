@@ -12,7 +12,7 @@ using SMath.Math;
 using SMath.Math.Numeric;
 
 
-namespace XYPlotPlugin.Functions 
+namespace XYPlotPluginSeq.Functions 
 {
     public class setprop : IFunction 
     {

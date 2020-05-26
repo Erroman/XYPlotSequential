@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Xml;
 
-namespace XYPlotPlugin
+namespace XYPlotPluginSeq
 {
     public class PropertiesSourceConverter : TypeConverter
     {
