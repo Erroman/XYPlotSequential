@@ -16,14 +16,14 @@ namespace XYPlotPluginSeq
 
         #region Public methods
 
-        public RegionBase CreateNew( SessionProfile sessionProfile ) => new XYPlot( sessionProfile );
+        public RegionBase CreateNew( SessionProfile sessionProfile ) => new XYPlotSeq( sessionProfile );
 
 
         public MenuButton[] GetContextMenuItems( MenuContext context )
         {
             var mbFormat = new MenuButton( context.SessionProfile.CurrentLanguage.Abbr == "RUS" ? "Формат..." : "Format..." )
             {
-                Action = args => ( ( XYPlot ) args.CurrentRegion ).ShowFormatDialog( EnChartElement.Chart )
+                Action = args => ( ( XYPlotSeq ) args.CurrentRegion ).ShowFormatDialog( EnChartElement.Chart )
             };
 
             return new[] { mbFormat };
@@ -32,7 +32,7 @@ namespace XYPlotPluginSeq
 
         public MenuButton[] GetMenuItems( SessionProfile sessionProfile )
         {
-            var xyPlot = new MenuButton( sessionProfile.CurrentLanguage.Abbr == "RUS" ? "X-Y График" : "X-Y Plot Seq Marching" )
+            var xyPlotSeq = new MenuButton( sessionProfile.CurrentLanguage.Abbr == "RUS" ? "X-Y График" : "X-Y Plot Seq Marching" )
             {
                 Behavior = MenuButtonBehavior.DisableWhenInsideRegion,
                 Icon = Graphics.Specifics.BitmapFromNativeImage( Resources.menuIcon ),
@@ -41,7 +41,7 @@ namespace XYPlotPluginSeq
 
             var plotMenu = new MenuButton( sessionProfile.CurrentLanguage.StringsGUI[ 151 ] );
 
-            plotMenu.AppendChild( xyPlot );
+            plotMenu.AppendChild( xyPlotSeq );
 
             return new[] { plotMenu };
         }
@@ -58,9 +58,9 @@ namespace XYPlotPluginSeq
 
         #region Properties
 
-        public string TagName { get; } = "xyplotModified";
+        public string TagName { get; } = "xyplotSeq";
 
-        public Type RegionType => typeof( XYPlot );
+        public Type RegionType => typeof( XYPlotSeq );
 
         public DragAndDropFileType[] DragAndDropFileTypes { get; private set; }
 

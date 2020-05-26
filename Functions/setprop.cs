@@ -287,7 +287,7 @@ namespace XYPlotPluginSeq.Functions
             var list = new Dictionary<string,string>
             {
                 { "MapleTools", "MaplePlugin.MaplePlot" },
-                { "XYPlotRegion", "XYPlotPluginSeq.XYPlot" },
+                { "XYPlotRegionSeq", "XYPlotPluginSeq.XYPlotSeq" },
                 { "ZedGraphRegion", "ZedGraphPlugin.ZedGraph" }
             };
 

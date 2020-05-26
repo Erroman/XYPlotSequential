@@ -18,13 +18,13 @@ namespace XYPlotPluginSeq
         #region Private fields
 
         private EnChartElement _element;
-        private XYPlot _region;
+        private XYPlotSeq _region;
 
         #endregion
 
         #region Constructors
 
-        public FormFormat( XYPlot region, SessionProfile sessionProfile, EnChartElement element ) 
+        public FormFormat( XYPlotSeq region, SessionProfile sessionProfile, EnChartElement element ) 
         {
             InitializeComponent();
 

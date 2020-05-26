@@ -5,5 +5,5 @@ C:\Endeavours\SMath  Studio\XYPlotSequential\bin\Debug\XYPlotRegionSeq.pdb
 C:\Endeavours\SMath  Studio\XYPlotSequential\obj\Debug\XYPlotRegionSeq.dll
 C:\Endeavours\SMath  Studio\XYPlotSequential\obj\Debug\XYPlotRegionSeq.pdb
 C:\Endeavours\SMath  Studio\XYPlotSequential\obj\Debug\XYPlotPluginSeq.FormFormat.resources
-C:\Endeavours\SMath  Studio\XYPlotSequential\obj\Debug\XYPlotRegionSeq.csprojAssemblyReference.cache
 C:\Endeavours\SMath  Studio\XYPlotSequential\obj\Debug\XYPlotPluginSeq.Properties.Resources.resources
+C:\Endeavours\SMath  Studio\XYPlotSequential\obj\Debug\XYPlotRegionSeq.csprojAssemblyReference.cache

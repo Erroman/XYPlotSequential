@@ -87,7 +87,7 @@ namespace JXCharts
 
         private void Initialize()
         {
-            _name = "XYPlotModified";
+            _name = "XYPlotSeq";
             Points = 100;
 
             _lastKeyEventArgs = new KeyEventOptions();

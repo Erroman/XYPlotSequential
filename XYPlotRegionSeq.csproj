@@ -105,7 +105,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="XYPlot.cs" />
+    <Compile Include="XYPlotSeq.cs" />
     <Compile Include="PluginRegion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
