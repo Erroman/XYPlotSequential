@@ -109,7 +109,7 @@
             this.MinimumSize = new System.Drawing.Size(229, 414);
             this.Name = "FormFormat";
             this.ShowInTaskbar = false;
-            this.Text = "Formatting X-Y Plot";
+            this.Text = "Formatting X-Y Plot with modified algorithm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormFormat_FormClosing);
             this.Load += new System.EventHandler(this.FormFormat_Load);
             this.panel1.ResumeLayout(false);

@@ -58,7 +58,7 @@ namespace XYPlotPlugin
 
         #region Properties
 
-        public string TagName { get; } = "xyplot";
+        public string TagName { get; } = "xyplotModified";
 
         public Type RegionType => typeof( XYPlot );
 
