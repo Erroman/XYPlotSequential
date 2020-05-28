@@ -20,18 +20,18 @@ using JXCharts;
 #endregion
 
 namespace XYPlotPluginSeq 
-{    
+{
     public class XYPlotSeq : RegionHolder<Chart2D>
     {
 
         #region Private fields
-        
+
         private int _tracesCount;
         private Color[] _defLineColors;
 
         private byte[] _edgeTable = { 0, 9, 3, 10, 6, 15, 5, 12, 12, 5, 15, 6, 10, 3, 9, 0 };
 
-        private int[,] _triTable = 
+        private int[,] _triTable =
         {
             { -1,  0,  0,  1,  1,  0,  0,  2,  2,  0,  0,  1,  1,  0,  0,  0 },
             { -1,  3,  1,  3,  2,  3,  2,  3,  3,  2,  1,  2,  3,  1,  3, -1 },
@@ -50,16 +50,16 @@ namespace XYPlotPluginSeq
 
         #region Constructors
 
-        public XYPlotSeq( SessionProfile sessionProfile ) : base( sessionProfile )
+        public XYPlotSeq(SessionProfile sessionProfile) : base(sessionProfile)
         {
-             Initialize();
-             Instances.Add( canv );
+            Initialize();
+            Instances.Add(canv);
         }
 
 
-        public XYPlotSeq( XYPlotSeq region ) : base( region ) 
-        {            
-            Initialize();            
+        public XYPlotSeq(XYPlotSeq region) : base(region)
+        {
+            Initialize();
 
             DescriptionLocation = region.DescriptionLocation;
         }
@@ -73,7 +73,7 @@ namespace XYPlotPluginSeq
             BackColor = Color.Transparent;
             Border = false;
             DescriptionLocation = ElementPosition.Top;
-            
+
             math.BackColor = Color.Transparent;
 
             _tracesCount = 0;
@@ -88,7 +88,16 @@ namespace XYPlotPluginSeq
             _defLineColors[5] = Color.SaddleBrown;
         }
 
+        class Branch
+        {
 
+        };
+        class Square 
+        {
+            int n; // №  квадрата в ряду по оси Х
+            int m; //  №  квадрата в столбце вдоль оси Y
+
+        };
         // (x,y) coordinates.
         private List<PointD> GetPoints( double dx, double dy, double xmin, double ymin, int n, int m )
         {
@@ -228,7 +237,7 @@ namespace XYPlotPluginSeq
 
                     // Пропускаем, если нет пересечения.
                     if (_edgeTable[indx] == 0) continue;
-
+                    //Пересечение найдено! Включается алгоритм последо вательного поиска
                     // Текущий квадрат.
                     var xy = GetPoints(dx, dy, xmin, ymin, n, m);
 
