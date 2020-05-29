@@ -90,7 +90,11 @@ namespace XYPlotPluginSeq
 
         class Branch
         {
-
+            Square startSquare;
+            public Branch(Square startSquare) 
+            {
+                this.startSquare = startSquare;
+            }
         };
         class Square 
         {
