@@ -106,7 +106,7 @@ namespace XYPlotPluginSeq
             {
                 this.n = n;
                 this.m = m;
-                nextSquares = new List<Square>();
+                nextSquares = new List<Square>(); 
             }
    
         };
@@ -184,7 +184,7 @@ namespace XYPlotPluginSeq
 
             return vlist;
         }
-
+        private bool IntersectionFound(int n, int m, double[,] zvalues, double[] vals) { return false; }
 
         private List<PointD> ImplicitPlot2d( double dx, double dy, double xmin, double ymin, int nx, int ny, double[,] zvalues, double isolevel = 0 ) 
         {
