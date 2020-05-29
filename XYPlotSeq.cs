@@ -100,7 +100,15 @@ namespace XYPlotPluginSeq
         {
             int n; // №  квадрата в ряду по оси Х
             int m; //  №  квадрата в столбце вдоль оси Y
-
+            bool EndOfBranch;
+            List<Square> nextSquares;
+            public Square(int n, int m) 
+            {
+                this.n = n;
+                this.m = m;
+                nextSquares = new List<Square>();
+            }
+   
         };
         // (x,y) coordinates.
         private List<PointD> GetPoints( double dx, double dy, double xmin, double ymin, int n, int m )
@@ -241,7 +249,6 @@ namespace XYPlotPluginSeq
 
                     // Пропускаем, если нет пересечения.
                     if (_edgeTable[indx] == 0) continue;
-                    //Пересечение найдено! Включается алгоритм последо вательного поиска
                     // Текущий квадрат.
                     var xy = GetPoints(dx, dy, xmin, ymin, n, m);
 
@@ -267,6 +274,8 @@ namespace XYPlotPluginSeq
 
                         i += 2;
                     }
+                    //Включается алгоритм последовательного поиска
+                    Branch newBranch = new Branch(new Square(n,m));
                 }
             }
 
