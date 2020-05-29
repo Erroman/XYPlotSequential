@@ -184,7 +184,14 @@ namespace XYPlotPluginSeq
 
             return vlist;
         }
-        private bool IntersectionFound(int n, int m, double[,] zvalues, double[] vals) { return false; }
+        private bool IntersectionFound(int n, int m, double[,] zvalues, double isolevel, out double[] vals,out byte indx) 
+        {
+            // Значение z в вершинах квадрата.
+            vals = GetValues(n, m, zvalues);
+            // Классифицируем тип пересечения.
+            indx = GetIndex(vals, isolevel);
+            return _edgeTable[indx] != 0; 
+        }
 
         private List<PointD> ImplicitPlot2d( double dx, double dy, double xmin, double ymin, int nx, int ny, double[,] zvalues, double isolevel = 0 ) 
         {
@@ -241,14 +248,12 @@ namespace XYPlotPluginSeq
             {
                 for (var m = 0; m < ny; m++)
                 {
-                    // Значение z в вершинах квадрата.
-                    var vals = GetValues(n, m, zvalues);
 
-                    // Классифицируем тип пересечения.
-                    var indx = GetIndex(vals, isolevel);
-
+                    double[] vals; // Значение z в вершинах квадрата.
+                    byte indx;    // Nип пересечения.
                     // Пропускаем, если нет пересечения.
-                    if (_edgeTable[indx] == 0) continue;
+                    if (!IntersectionFound(n,m,zvalues,isolevel,out vals, out indx)) continue;
+
                     // Текущий квадрат.
                     var xy = GetPoints(dx, dy, xmin, ymin, n, m);
 
