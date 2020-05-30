@@ -16,6 +16,7 @@ using SMath.Math;
 using SMath.Math.Numeric;
 
 using JXCharts;
+using System.Collections;
 
 #endregion
 
@@ -88,12 +89,22 @@ namespace XYPlotPluginSeq
             _defLineColors[5] = Color.SaddleBrown;
         }
 
-        class Branch
+        class Branch: IEnumerable<Square>
         {
             Square startSquare;
             public Branch(Square startSquare) 
             {
                 this.startSquare = startSquare;
+            }
+
+            public IEnumerator<Square> GetEnumerator()
+            {
+                throw new NotImplementedException();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                throw new NotImplementedException();
             }
         };
         class Square 
@@ -101,12 +112,13 @@ namespace XYPlotPluginSeq
             int n; // №  квадрата в ряду по оси Х
             int m; //  №  квадрата в столбце вдоль оси Y
             bool EndOfBranch;
-            List<Square> nextSquares;
+            Square[]  neighbours = new Square[3];
+            Square ancester;
             public Square(int n, int m) 
             {
                 this.n = n;
                 this.m = m;
-                nextSquares = new List<Square>(); 
+                
             }
    
         };
