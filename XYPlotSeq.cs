@@ -99,7 +99,7 @@ namespace XYPlotPluginSeq
 
             public IEnumerator<Square> GetEnumerator()
             {
-
+                return new SquareEnumerator(startSquare);
                 throw new NotImplementedException();
             }
 
@@ -125,9 +125,14 @@ namespace XYPlotPluginSeq
         };
         class SquareEnumerator : IEnumerator<Square>
         {
-            public Square Current => throw new NotImplementedException();
+            private Square _currentSquare;
+            public SquareEnumerator(Square startSquare) 
+            {
+                _currentSquare = startSquare;
+            }
+            public Square Current => _currentSquare;
 
-            object IEnumerator.Current => throw new NotImplementedException();
+            object IEnumerator.Current => _currentSquare;
 
             public void Dispose()
             {
@@ -136,7 +141,7 @@ namespace XYPlotPluginSeq
 
             public bool MoveNext()
             {
-                throw new NotImplementedException();
+                return false;
             }
 
             public void Reset()
@@ -315,6 +320,8 @@ namespace XYPlotPluginSeq
                     }
                     //Включается алгоритм последовательного поиска
                     Branch newBranch = new Branch(new Square(n,m));
+                    IEnumerator<Square> nextSquare = newBranch.GetEnumerator();
+                    while (nextSquare.MoveNext()) ;
                 }
             }
 
