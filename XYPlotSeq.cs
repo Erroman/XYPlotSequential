@@ -99,6 +99,7 @@ namespace XYPlotPluginSeq
 
             public IEnumerator<Square> GetEnumerator()
             {
+
                 throw new NotImplementedException();
             }
 
@@ -106,6 +107,7 @@ namespace XYPlotPluginSeq
             {
                 throw new NotImplementedException();
             }
+            
         };
         class Square 
         {
@@ -118,10 +120,30 @@ namespace XYPlotPluginSeq
             {
                 this.n = n;
                 this.m = m;
-                
             }
    
         };
+        class SquareEnumerator : IEnumerator<Square>
+        {
+            public Square Current => throw new NotImplementedException();
+
+            object IEnumerator.Current => throw new NotImplementedException();
+
+            public void Dispose()
+            {
+                throw new NotImplementedException();
+            }
+
+            public bool MoveNext()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Reset()
+            {
+                throw new NotImplementedException();
+            }
+        }
         // (x,y) coordinates.
         private List<PointD> GetPoints( double dx, double dy, double xmin, double ymin, int n, int m )
         {
