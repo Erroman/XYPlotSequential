@@ -91,16 +91,17 @@ namespace XYPlotPluginSeq
 
         class Branch: IEnumerable<Square>
         {
-            Square startSquare;
+            public Square startSquare;
+            public List<Square> list_of_squares;
             public Branch(Square startSquare) 
             {
                 this.startSquare = startSquare;
+                list_of_squares = new List<Square>();
             }
 
             public IEnumerator<Square> GetEnumerator()
             {
-                return new SquareEnumerator(startSquare);
-                throw new NotImplementedException();
+                return new SquareEnumerator(this,startSquare);
             }
 
             IEnumerator IEnumerable.GetEnumerator()
@@ -111,8 +112,8 @@ namespace XYPlotPluginSeq
         };
         class Square 
         {
-            int n; // №  квадрата в ряду по оси Х
-            int m; //  №  квадрата в столбце вдоль оси Y
+            public int n; // №  квадрата в ряду по оси Х
+            public int m; //  №  квадрата в столбце вдоль оси Y
             bool EndOfBranch;
             Square[]  neighbours = new Square[3];
             Square ancester;
@@ -125,14 +126,19 @@ namespace XYPlotPluginSeq
         };
         class SquareEnumerator : IEnumerator<Square>
         {
-            private Square _currentSquare;
-            public SquareEnumerator(Square startSquare) 
+            private Branch currentBranch;
+            private Square currentSquare;
+            private int n;
+            private int m;
+            public SquareEnumerator(Branch branch,Square startSquare) 
             {
-                _currentSquare = startSquare;
-            }
-            public Square Current => _currentSquare;
+                currentBranch = branch;
+                currentSquare = startSquare;
 
-            object IEnumerator.Current => _currentSquare;
+            }
+            public Square Current => currentSquare;
+
+            object IEnumerator.Current => currentSquare;
 
             public void Dispose()
             {
@@ -141,6 +147,7 @@ namespace XYPlotPluginSeq
 
             public bool MoveNext()
             {
+                currentBranch.list_of_squares.Add(new Square(currentSquare.n, currentSquare.m));
                 return false;
             }
 
