@@ -93,10 +93,15 @@ namespace XYPlotPluginSeq
         {
             public Square startSquare;
             public List<Square> list_of_squares;
+            public HashSet<int> list_of_checked_squares;
             public Branch(Square startSquare) 
             {
                 this.startSquare = startSquare;
                 list_of_squares = new List<Square>();
+            }
+            public Branch(Square startSquare,HashSet<int> checkedSquares):this(startSquare)
+            {
+                list_of_checked_squares = checkedSquares;
             }
 
             public IEnumerator<Square> GetEnumerator()
@@ -289,7 +294,8 @@ namespace XYPlotPluginSeq
         private List<PointD> ImplicitPlot2dSeq(double dx, double dy, double xmin, double ymin, int nx, int ny, double[,] zvalues, double isolevel = 0)
         {
             var pp = new List<PointD>();
-
+            HashSet<int> checkedSquares = new HashSet<int>(); //номера проверенных  клеток
+            Branch newBranch = new Branch(new Square(0, 0));
             for (var n = 0; n < nx; n++)
             {
                 for (var m = 0; m < ny; m++)
@@ -298,7 +304,11 @@ namespace XYPlotPluginSeq
                     double[] vals; // Значение z в вершинах квадрата.
                     byte indx;    // Nип пересечения.
                     // Пропускаем, если нет пересечения.
-                    if (!IntersectionFound(n,m,zvalues,isolevel,out vals, out indx)) continue;
+                    if (!IntersectionFound(n, m, zvalues, isolevel, out vals, out indx)) 
+                    {
+                        checkedSquares.Add(10*n+m);
+                        continue; 
+                    }
 
                     // Текущий квадрат.
                     var xy = GetPoints(dx, dy, xmin, ymin, n, m);
@@ -326,13 +336,13 @@ namespace XYPlotPluginSeq
                         i += 2;
                     }
                     //Включается алгоритм последовательного поиска
-                    Branch newBranch = new Branch(new Square(n,m));
+//                    Branch newBranch = new Branch(new Square(n,m));
                     IEnumerator<Square> nextSquare = newBranch.GetEnumerator();
                     while (nextSquare.MoveNext()) ;
                 }
             }
 
-            return pp;
+             return pp;
         }
 
         private void AddLinePlot<T>( List<T> list )
