@@ -152,6 +152,7 @@ namespace XYPlotPluginSeq
 
             public bool MoveNext()
             {
+                if(!currentBranch.list_of_checked_squares.Contains(10*n+m))
                 currentBranch.list_of_squares.Add(new Square(currentSquare.n, currentSquare.m));
                 return false;
             }
@@ -295,7 +296,7 @@ namespace XYPlotPluginSeq
         {
             var pp = new List<PointD>();
             HashSet<int> checkedSquares = new HashSet<int>(); //номера проверенных  клеток
-            Branch newBranch = new Branch(new Square(0, 0));
+            Branch newBranch = new Branch(new Square(0, 0),checkedSquares);
             for (var n = 0; n < nx; n++)
             {
                 for (var m = 0; m < ny; m++)
