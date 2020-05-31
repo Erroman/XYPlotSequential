@@ -152,7 +152,7 @@ namespace XYPlotPluginSeq
 
             public bool MoveNext()
             {
-                if(!currentBranch.list_of_checked_squares.Contains(10*n+m))
+                if(currentBranch.list_of_checked_squares.Contains(10*n+m))
                 currentBranch.list_of_squares.Add(new Square(currentSquare.n, currentSquare.m));
                 return false;
             }
@@ -296,50 +296,54 @@ namespace XYPlotPluginSeq
         {
             var pp = new List<PointD>();
             HashSet<int> checkedSquares = new HashSet<int>(); //номера проверенных  клеток
-            Branch newBranch = new Branch(new Square(0, 0),checkedSquares);
             for (var n = 0; n < nx; n++)
             {
                 for (var m = 0; m < ny; m++)
                 {
 
                     double[] vals; // Значение z в вершинах квадрата.
-                    byte indx;    // Nип пересечения.
+                    byte indx;    // Тип пересечения.
+                    //Пропускаем, если квадрат включен в одну из ветвей
+                    //if (checkedSquares.Contains(10 * n + m)) continue;
                     // Пропускаем, если нет пересечения.
                     if (!IntersectionFound(n, m, zvalues, isolevel, out vals, out indx)) 
                     {
                         checkedSquares.Add(10*n+m);
                         continue; 
                     }
-
-                    // Текущий квадрат.
-                    var xy = GetPoints(dx, dy, xmin, ymin, n, m);
-
-                    // Получаем список точек для найденного квадрата.
-                    var vlist = GetVertList(isolevel, xy, vals);
-
-                    // Заполняем список точек кривой отрезками на основе 
-                    // найденной конфигурации пересечения.
-                    byte i = 0;
-                    //private int[,] _triTable =
-                    //{
-                    //    { -1,  0,  0,  1,  1,  0,  0,  2,  2,  0,  0,  1,  1,  0,  0,  0 },
-                    //    { -1,  3,  1,  3,  2,  3,  2,  3,  3,  2,  1,  2,  3,  1,  3, -1 },
-                    //    { -1, -1, -1, -1, -1,  1, -1, -1, -1, -1,  2, -1, -1, -1, -1, -1 },
-                    //    { -1, -1, -1, -1, -1,  2, -1, -1, -1, -1,  3, -1, -1, -1, -1, -1 },
-                    //    { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
-                    //};
-
-                    while (_triTable[i, indx] != -1)
-                    {
-                        pp.Add(vlist[_triTable[i, indx]]);
-                        pp.Add(vlist[_triTable[i + 1, indx]]);
-
-                        i += 2;
-                    }
-                    //Включается алгоритм последовательного поиска
-//                    Branch newBranch = new Branch(new Square(n,m));
+                    //Найденный квадрат с пересечением служит началом для построения ветви кривой
+                    Branch newBranch = new Branch(new Square(n, m), checkedSquares);
                     IEnumerator<Square> nextSquare = newBranch.GetEnumerator();
-                    while (nextSquare.MoveNext()) ;
+                    while (/*nextSquare.MoveNext()*/true) 
+                    { 
+
+                        // Текущий квадрат.
+                        var xy = GetPoints(dx, dy, xmin, ymin, n, m);
+
+                        // Получаем список точек для найденного квадрата.
+                        var vlist = GetVertList(isolevel, xy, vals);
+
+                        // Заполняем список точек кривой отрезками на основе 
+                        // найденной конфигурации пересечения.
+                        byte i = 0;
+                        //private int[,] _triTable =
+                        //{
+                        //    { -1,  0,  0,  1,  1,  0,  0,  2,  2,  0,  0,  1,  1,  0,  0,  0 },
+                        //    { -1,  3,  1,  3,  2,  3,  2,  3,  3,  2,  1,  2,  3,  1,  3, -1 },
+                        //    { -1, -1, -1, -1, -1,  1, -1, -1, -1, -1,  2, -1, -1, -1, -1, -1 },
+                        //    { -1, -1, -1, -1, -1,  2, -1, -1, -1, -1,  3, -1, -1, -1, -1, -1 },
+                        //    { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 }
+                        //};
+
+                        while (_triTable[i, indx] != -1)
+                        {
+                            pp.Add(vlist[_triTable[i, indx]]);
+                            pp.Add(vlist[_triTable[i + 1, indx]]);
+
+                            i += 2;
+                        }
+                        break;
+                    }
                 }
             }
 
