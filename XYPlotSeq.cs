@@ -128,7 +128,8 @@ namespace XYPlotPluginSeq
             public int m; //  №  квадрата в столбце вдоль оси Y
             bool EndOfBranch;
             Square[]  neighbours = new Square[3];
-            Square ancester;
+            Square ancestor;
+            EntranceDirection entranceDirection; //from which side the cell is visited
             public Square(int n, int m) 
             {
                 this.n = n;
@@ -136,10 +137,15 @@ namespace XYPlotPluginSeq
             }
    
         };
+        enum EntranceDirection
+        { 
+            Left,Top,Right,Bottom
+        };
         class SquareEnumerator : IEnumerator<Square>
         {
+            private Square startSquare;
             private Branch currentBranch;
-            private Square currentSquare;
+            private Square currentSquare = null;
             private int n;
             private int m;
             private int nx; //число квадратов по оси х
@@ -147,7 +153,7 @@ namespace XYPlotPluginSeq
             public SquareEnumerator(Branch branch,Square startSquare,int nx,int ny) 
             {
                 this.currentBranch = branch;
-                this.currentSquare = startSquare;
+                this.startSquare = startSquare;
                 this.nx = nx;
                 this.ny = ny;
 
@@ -163,11 +169,20 @@ namespace XYPlotPluginSeq
 
             public bool MoveNext()
             {
-                n = 0; //calculate n
-                m = 0; //calculate m
-                if(!currentBranch.list_of_checked_squares.Contains(ny * n + m))
-                currentBranch.list_of_squares.Add(new Square(currentSquare.n, currentSquare.m));
-                return false;
+                if (currentSquare == null)
+                {
+                    currentSquare = startSquare;
+                    return true;
+                }
+                else
+                    return false;
+                //{
+                //    n = 0; //calculate n
+                //    m = 0; //calculate m
+                //    if (!currentBranch.list_of_checked_squares.Contains(ny * n + m))
+                //        currentBranch.list_of_squares.Add(new Square(currentSquare.n, currentSquare.m));
+                //}
+
             }
 
             public void Reset()
@@ -328,9 +343,14 @@ namespace XYPlotPluginSeq
                         continue; 
                     }
                     //Найденный квадрат с пересечением служит началом для построения новой ветви кривой
+                    //эта ветвь кривой представлена объектом класса Branch, в который через конструктор 
+                    //передаются начало ветви, представленное объектом класса Square, объект HashSet 
+                    //с номерами проверенных клеток, и значения числа квадратов вдоль осей X и Y для
+                    //формирования номера (индекса) клетки ny * n + m, строго говоря, для этого нужено
+                    //только число квадратов вдоль оси Y ny
                     Branch newBranch = new Branch(new Square(n, m), checkedSquares,nx,ny);
                     IEnumerator<Square> nextSquare = newBranch.GetEnumerator();
-                    while (/*nextSquare.MoveNext()*/true) 
+                    while (nextSquare.MoveNext()) 
                     { 
 
                         // Текущий квадрат.
