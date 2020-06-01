@@ -378,7 +378,6 @@ namespace XYPlotPluginSeq
 
                             i += 2;
                         }
-                        break;
                     }
                 }
             }
