@@ -403,12 +403,12 @@ namespace XYPlotPluginSeq
 
                     double[] vals; // Значение z в вершинах квадрата.
                     byte indx;    // Тип пересечения.
-                    ////Пропускаем, если квадрат включен в одну из ветвей
-                    //if (checkedSquares.Contains(ny * n + m)) 
-                    //{ 
-                    //    continue; 
-                    //}
-                    // Пропускаем, если нет пересечения.
+                    //Пропускаем, если квадрат включен в одну из ветвей
+                    if (checkedSquares.Contains(ny * n + m))
+                    {
+                        continue;
+                    }
+                    //Пропускаем, если нет пересечения.
                     if (!IntersectionFound(n, m, zvalues, isolevel, out vals, out indx)) 
                     {
                         checkedSquares.Add(ny * n + m);
