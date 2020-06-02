@@ -133,6 +133,8 @@ namespace XYPlotPluginSeq
         {
             public int n; // №  квадрата в ряду по оси Х
             public int m; //  №  квадрата в столбце вдоль оси Y
+            public double[] vals;
+            public double indx;
             public bool StartingSquare;
             Square[]  neighbours = new Square[3];
             Square ancestor;
@@ -356,11 +358,11 @@ namespace XYPlotPluginSeq
 
                     double[] vals; // Значение z в вершинах квадрата.
                     byte indx;    // Тип пересечения.
-                    //Пропускаем, если квадрат включен в одну из ветвей
-                    if (checkedSquares.Contains(ny * n + m)) 
-                    { 
-                        continue; 
-                    }
+                    ////Пропускаем, если квадрат включен в одну из ветвей
+                    //if (checkedSquares.Contains(ny * n + m)) 
+                    //{ 
+                    //    continue; 
+                    //}
                     // Пропускаем, если нет пересечения.
                     if (!IntersectionFound(n, m, zvalues, isolevel, out vals, out indx)) 
                     {
