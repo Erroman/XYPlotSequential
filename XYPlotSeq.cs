@@ -181,29 +181,71 @@ namespace XYPlotPluginSeq
                 {
                     currentSquare = startSquare;
                     currentBranch.list_of_squares.Add(currentSquare);
-                    currentBranch.list_of_checked_squares.Add(ny *currentSquare.n + currentSquare.m);
+                    currentBranch.list_of_checked_squares.Add(ny * currentSquare.n + currentSquare.m);
                     return true;
                 }
                 else
                 //How can I judge that there is the first basic square in currentSquare ? By the StartingSquare field!
-                if (currentSquare.StartingSquare) 
+                if (currentSquare.StartingSquare)
                 {
-                    theCellAtTheleft = CheckTheSquare(currentSquare.n-1,currentSquare.m);
+                    theCellAtTheleft = CheckTheSquare(currentSquare.n - 1, currentSquare.m);
                     //determine the next square to go to, create it and put it into the currentBranch.list_of_squares
                     if (!(theCellAtTheleft == null))
                     {
                         currentSquare = theCellAtTheleft;
                         return true; //should be true !
                     }
-                    else 
+                    else
                     {
-                        theCellAtTheTop = CheckTheSquare(currentSquare.n, currentSquare.m+1);
+                        theCellAtTheTop = CheckTheSquare(currentSquare.n, currentSquare.m + 1);
                         if (!(theCellAtTheTop == null))
                         {
                             currentSquare = theCellAtTheTop;
                             return true; //should be true !
                         }
                         else
+                        {
+                            theCellAtTheRight = CheckTheSquare(currentSquare.n + 1, currentSquare.m);
+                            if (!(theCellAtTheRight == null))
+                            {
+                                currentSquare = theCellAtTheRight;
+                                return true; //should be true !
+                            }
+                            else
+                            {
+                                theCellAtTheBottom = CheckTheSquare(currentSquare.n, currentSquare.m - 1);
+                                if (!(theCellAtTheBottom == null))
+                                {
+                                    currentSquare = theCellAtTheBottom;
+                                    return true; //should be true !
+                                }
+                                else
+                                {
+                                    return false; // Обход дерева закончен!
+                                }
+
+
+                            }
+
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    //идём дальше, выше по дереву! 
+                    int DeltaX = currentSquare.PrevSquare.n - currentSquare.n;
+                    int DeltaY = currentSquare.PrevSquare.m - currentSquare.m;
+                    if (DeltaX == -1) 
+                    {
+                        theCellAtTheTop = CheckTheSquare(currentSquare.n, currentSquare.m + 1);
+                        if (!(theCellAtTheTop == null))
+                        {
+                            currentSquare = theCellAtTheTop;
+                            return true; //should be true !
+                        }
+                        else 
                         {
                             theCellAtTheRight = CheckTheSquare(currentSquare.n+1, currentSquare.m);
                             if (!(theCellAtTheRight == null))
@@ -221,19 +263,137 @@ namespace XYPlotPluginSeq
                                 }
                                 else
                                 {
-                                    return false; // Обход дерева закончен!
+                                    //идём вниз по дереву
+                                    currentSquare = currentSquare.PrevSquare;
+                                    return true; //should be true !
+
                                 }
 
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (DeltaX == 0 && DeltaY == 1) 
+                        {
+                            theCellAtTheRight = CheckTheSquare(currentSquare.n + 1, currentSquare.m);
+                            if (!(theCellAtTheRight == null))
+                            {
+                                currentSquare = theCellAtTheRight;
+                                return true; //should be true !
+                            }
+                            else
+                            {
+                                theCellAtTheBottom = CheckTheSquare(currentSquare.n, currentSquare.m - 1);
+                                if (!(theCellAtTheBottom == null))
+                                {
+                                    currentSquare = theCellAtTheBottom;
+                                    return true; //should be true !
+                                }
+                                else
+                                {
+                                    theCellAtTheleft = CheckTheSquare(currentSquare.n-1, currentSquare.m);
+                                    if (!(theCellAtTheleft == null))
+                                    {
+                                        currentSquare = theCellAtTheleft;
+                                        return true; //should be true !
+                                    }
+                                    else
+                                    {
+                                        //идём вниз по дереву
+                                        currentSquare = currentSquare.PrevSquare;
+                                        return true; //should be true !
+                                    }
+
+                                }
 
                             }
-
                         }
-
+                        else
+                        {
+                            if (DeltaX == 1) 
+                            {
+                                theCellAtTheBottom = CheckTheSquare(currentSquare.n, currentSquare.m - 1);
+                                if (!(theCellAtTheBottom == null))
+                                {
+                                    currentSquare = theCellAtTheBottom;
+                                    return true; //should be true !
+                                }
+                                else
+                                {
+                                    theCellAtTheleft = CheckTheSquare(currentSquare.n - 1, currentSquare.m);
+                                    if (!(theCellAtTheleft == null))
+                                    {
+                                        currentSquare = theCellAtTheleft;
+                                        return true; //should be true !
+                                    }
+                                    else
+                                    {
+                                        theCellAtTheTop = CheckTheSquare(currentSquare.n, currentSquare.m + 1);
+                                        if (!(theCellAtTheTop == null))
+                                        {
+                                            currentSquare = theCellAtTheTop;
+                                            return true; //should be true !
+                                        }
+                                        else
+                                        {
+                                            theCellAtTheRight = CheckTheSquare(currentSquare.n + 1, currentSquare.m);
+                                            if (!(theCellAtTheRight == null))
+                                            {
+                                                currentSquare = theCellAtTheRight;
+                                                return true; //should be true !
+                                            }
+                                            else
+                                            {
+                                                //идём вниз по дереву
+                                                currentSquare = currentSquare.PrevSquare;
+                                                return true; //should be true !
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (DeltaX == 0 && DeltaY == -1) 
+                                {
+                                    theCellAtTheleft = CheckTheSquare(currentSquare.n - 1, currentSquare.m);
+                                    if (!(theCellAtTheleft == null))
+                                    {
+                                        currentSquare = theCellAtTheleft;
+                                        return true; //should be true !
+                                    }
+                                    else
+                                    {
+                                        theCellAtTheTop = CheckTheSquare(currentSquare.n, currentSquare.m + 1);
+                                        if (!(theCellAtTheTop == null))
+                                        {
+                                            currentSquare = theCellAtTheTop;
+                                            return true; //should be true !
+                                        }
+                                        else
+                                        {
+                                            theCellAtTheRight = CheckTheSquare(currentSquare.n + 1, currentSquare.m);
+                                            if (!(theCellAtTheRight == null))
+                                            {
+                                                currentSquare = theCellAtTheRight;
+                                                return true; //should be true !
+                                            }
+                                            else
+                                            {
+                                                //идём вниз по дереву
+                                                currentSquare = currentSquare.PrevSquare;
+                                                return true; //should be true !
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
-                        
-                }
-                else
-                return false; // Продолжаем обход дерева!
+                
+                }    
+                throw new Exception(); // Исключительная ситуация,этого не должно происходить!!
             }
             Square theCellAtTheleft;
             Square theCellAtTheTop;
