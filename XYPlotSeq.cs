@@ -205,12 +205,16 @@ namespace XYPlotPluginSeq
             Square theCellOnTheleft;
             private Square CheckTheSquare(int n, int m) 
             {
+                Square next_square;
                 double[] vals;
                 byte indx;
                 if(n < 0 || n > nx || m < 0 || m > ny) return null; //is it within the borders of the nx*ny array of cells?
                 if (!currentBranch.list_of_checked_squares.Contains(ny * n + m)) return null; //if this cell is already checked?
-                if (!currentBranch.myplot.IntersectionFound(n, m, currentBranch.zvalues, currentBranch.isolevel, out vals, out indx)) return null;
-                return null;
+                if (!currentBranch.myplot.IntersectionFound(n, m, currentBranch.zvalues, currentBranch.isolevel, out vals, out indx))
+                    return null;
+                else
+                    next_square = new Square(n, m) { vals = vals,indx = indx };
+                return next_square;
             }
             // (x,y) coordinates.
 
