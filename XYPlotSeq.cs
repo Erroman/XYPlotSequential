@@ -137,7 +137,7 @@ namespace XYPlotPluginSeq
             public double indx;
             public bool StartingSquare;
             Square[]  neighbours = new Square[3];
-            Square ancestor;
+            public Square PrevSquare;
             EntranceDirection entranceDirection; //from which side the cell is visited
             public Square(int n, int m) 
             {
@@ -187,33 +187,73 @@ namespace XYPlotPluginSeq
                 else
                 //How can I judge that there is the first basic square in currentSquare ? By the StartingSquare field!
                 if (currentSquare.StartingSquare) 
-                { 
-                    theCellOnTheleft = CheckTheSquare(currentSquare.n,currentSquare.m-1);
+                {
+                    theCellAtTheleft = CheckTheSquare(currentSquare.n-1,currentSquare.m);
                     //determine the next square to go to, create it and put it into the currentBranch.list_of_squares
+                    if (!(theCellAtTheleft == null))
+                    {
+                        currentSquare = theCellAtTheleft;
+                        return false; //should be true !
+                    }
+                    else 
+                    {
+                        theCellAtTheTop = CheckTheSquare(currentSquare.n, currentSquare.m+1);
+                        if (!(theCellAtTheTop == null))
+                        {
+                            currentSquare = theCellAtTheTop;
+                            return false; //should be true !
+                        }
+                        else
+                        {
+                            theCellAtTheRight = CheckTheSquare(currentSquare.n+1, currentSquare.m);
+                            if (!(theCellAtTheRight == null))
+                            {
+                                currentSquare = theCellAtTheRight;
+                                return false; //should be true !
+                            }
+                            else
+                            {
+                                theCellAtTheBottom = CheckTheSquare(currentSquare.n, currentSquare.m-1);
+                                if (!(theCellAtTheBottom == null))
+                                {
+                                    currentSquare = theCellAtTheBottom;
+                                    return false; //should be true !
+                                }
+                                else
+                                {
+                                    return false; // Обход дерева закончен!
+                                }
 
-                    return false;
+
+                            }
+
+                        }
+
+                    }
+                        
                 }
-                return false;
-                //{
-                //    n = 0; //calculate n
-                //    m = 0; //calculate m
-                //    if (!currentBranch.list_of_checked_squares.Contains(ny * n + m))
-                //        currentBranch.list_of_squares.Add(new Square(currentSquare.n, currentSquare.m));
-                //}
-
+                else
+                return false; // Продолжаем обход дерева!
             }
-            Square theCellOnTheleft;
+            Square theCellAtTheleft;
+            Square theCellAtTheTop;
+            Square theCellAtTheRight;
+            Square theCellAtTheBottom;
             private Square CheckTheSquare(int n, int m) 
             {
                 Square next_square;
                 double[] vals;
                 byte indx;
-                if(n < 0 || n > nx || m < 0 || m > ny) return null; //is it within the borders of the nx*ny array of cells?
-                if (!currentBranch.list_of_checked_squares.Contains(ny * n + m)) return null; //if this cell is already checked?
+                if(n < 0 || n >= nx || m < 0 || m >= ny) return null; //is it within the borders of the nx*ny array of cells?
+                if (currentBranch.list_of_checked_squares.Contains(ny * n + m)) return null; //if this cell is already checked?
                 if (!currentBranch.myplot.IntersectionFound(n, m, currentBranch.zvalues, currentBranch.isolevel, out vals, out indx))
                     return null;
                 else
-                    next_square = new Square(n, m) { vals = vals,indx = indx,StartingSquare = false };
+                    next_square = new Square(n, m) { PrevSquare = currentSquare, vals = vals,indx = indx,StartingSquare = false };
+                    currentBranch.list_of_squares.Add(next_square);
+                    currentBranch.list_of_checked_squares.Add(ny * next_square.n + next_square.m);
+
+
                 return next_square;
             }
             // (x,y) coordinates.
