@@ -177,11 +177,13 @@ namespace XYPlotPluginSeq
                 if (currentSquare == null)
                 {
                     currentSquare = startSquare;
+                    currentBranch.list_of_squares.Add(currentSquare);
+                    currentBranch.list_of_checked_squares.Add(ny *currentSquare.n + currentSquare.m);
                     return true;
                 }
                 else
                 //How can I judge that there is the first basic square in currentSquare ? By the StartingSquare field!
-                    if (currentSquare.StartingSquare) 
+                if (currentSquare.StartingSquare) 
                 { 
                     theCellOnTheleft = CheckTheSquare(currentSquare.n,currentSquare.m-1);
                     //determine the next square to go to, create it and put it into the currentBranch.list_of_squares
@@ -199,11 +201,13 @@ namespace XYPlotPluginSeq
             }
             bool theCellOnTheleft;
             private bool CheckTheSquare(int n, int m) 
-            { 
-                if(n<0 || n>nx || m<0 || m>ny)return false; //is it within the borders of the nx*ny array of cells?
+            {
+                double[] vals;
+                byte indx;
+                if(n < 0 || n > nx || m < 0 || m > ny) return false; //is it within the borders of the nx*ny array of cells?
                 if (!currentBranch.list_of_checked_squares.Contains(ny * n + m)) return false; //if this cell is already checked?
-                    return false;
-                // if (!IntersectionFound(n, m, zvalues, isolevel, out vals, out indx))
+                if (!currentBranch.myplot.IntersectionFound(n, m, currentBranch.zvalues, currentBranch.isolevel, out vals, out indx)) return false;
+                return false;
             }
             // (x,y) coordinates.
 
@@ -367,8 +371,8 @@ namespace XYPlotPluginSeq
                     //эта ветвь кривой представлена объектом класса Branch, в который через конструктор 
                     //передаются начало ветви, представленное объектом класса Square, объект HashSet 
                     //с номерами проверенных клеток, и значения числа квадратов вдоль осей X и Y для
-                    //формирования номера (индекса) клетки ny * n + m, строго говоря, для этого нужено
-                    //только число квадратов вдоль оси Y ny
+                    //формирования номера (индекса) клетки ny * n + m  и определения граничных клеток
+                    //для области, в которой ведётся построение ветви функции
                     Branch newBranch = new Branch(new Square(n, m), checkedSquares,nx,ny, zvalues,isolevel,this);
                     IEnumerator<Square> nextSquare = newBranch.GetEnumerator();
                     while (nextSquare.MoveNext()) 
