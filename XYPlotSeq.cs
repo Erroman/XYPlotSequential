@@ -161,6 +161,7 @@ namespace XYPlotPluginSeq
             {
                 this.currentBranch = branch;
                 this.startSquare = startSquare;
+                this.currentSquare = null;
                 this.nx = nx;
                 this.ny = ny;
 
@@ -190,7 +191,7 @@ namespace XYPlotPluginSeq
                     theCellOnTheleft = CheckTheSquare(currentSquare.n,currentSquare.m-1);
                     //determine the next square to go to, create it and put it into the currentBranch.list_of_squares
 
-                    return theCellOnTheleft;
+                    return false;
                 }
                 return false;
                 //{
@@ -201,15 +202,15 @@ namespace XYPlotPluginSeq
                 //}
 
             }
-            bool theCellOnTheleft;
-            private bool CheckTheSquare(int n, int m) 
+            Square theCellOnTheleft;
+            private Square CheckTheSquare(int n, int m) 
             {
                 double[] vals;
                 byte indx;
-                if(n < 0 || n > nx || m < 0 || m > ny) return false; //is it within the borders of the nx*ny array of cells?
-                if (!currentBranch.list_of_checked_squares.Contains(ny * n + m)) return false; //if this cell is already checked?
-                if (!currentBranch.myplot.IntersectionFound(n, m, currentBranch.zvalues, currentBranch.isolevel, out vals, out indx)) return false;
-                return false;
+                if(n < 0 || n > nx || m < 0 || m > ny) return null; //is it within the borders of the nx*ny array of cells?
+                if (!currentBranch.list_of_checked_squares.Contains(ny * n + m)) return null; //if this cell is already checked?
+                if (!currentBranch.myplot.IntersectionFound(n, m, currentBranch.zvalues, currentBranch.isolevel, out vals, out indx)) return null;
+                return null;
             }
             // (x,y) coordinates.
 
