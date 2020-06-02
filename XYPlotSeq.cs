@@ -99,6 +99,7 @@ namespace XYPlotPluginSeq
             public Branch(Square startSquare) 
             {
                 this.startSquare = startSquare;
+                this.startSquare.StartingSquare = true; //indication that in startSquare is really the first square of the branch
                 list_of_squares = new List<Square>();
             }
             public Branch(Square startSquare,HashSet<int> checkedSquares):this(startSquare)
@@ -126,7 +127,7 @@ namespace XYPlotPluginSeq
         {
             public int n; // №  квадрата в ряду по оси Х
             public int m; //  №  квадрата в столбце вдоль оси Y
-            bool EndOfBranch;
+            public bool StartingSquare;
             Square[]  neighbours = new Square[3];
             Square ancestor;
             EntranceDirection entranceDirection; //from which side the cell is visited
@@ -175,7 +176,11 @@ namespace XYPlotPluginSeq
                     return true;
                 }
                 else
+                //How can I judge that in currentSquare is the first basic square? By the StartingSquare field!
+                    if (currentSquare.StartingSquare)
+                    //determine the next square to go to, create it and put it into the currentBranch.list_of_squares
                     return false;
+                return false;
                 //{
                 //    n = 0; //calculate n
                 //    m = 0; //calculate m
@@ -190,6 +195,7 @@ namespace XYPlotPluginSeq
                 throw new NotImplementedException();
             }
         }
+        private bool CheckTheSquare(int n,int m) { return false; }
         // (x,y) coordinates.
         private List<PointD> GetPoints( double dx, double dy, double xmin, double ymin, int n, int m )
         {
@@ -378,7 +384,7 @@ namespace XYPlotPluginSeq
 
                             i += 2;
                         }
-                    }
+                     }
                 }
             }
 
