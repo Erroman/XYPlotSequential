@@ -379,7 +379,7 @@ namespace XYPlotPluginSeq
                     { 
 
                         // Текущий квадрат.
-                        var xy = GetPoints(dx, dy, xmin, ymin, n, m);
+                        var xy = GetPoints(dx, dy, xmin, ymin, nextSquare.Current.n, nextSquare.Current.m);
 
                         // Получаем список точек для найденного квадрата.
                         var vlist = GetVertList(isolevel, xy, vals);
