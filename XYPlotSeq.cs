@@ -91,6 +91,7 @@ namespace XYPlotPluginSeq
 
         class Branch: IEnumerable<Square>
         {
+            public XYPlotSeq myplot;
             public Square startSquare;
             public int nx; //число квадратов по оси х
             public int ny; //число квадратов по оси y
@@ -108,12 +109,13 @@ namespace XYPlotPluginSeq
             {
                 list_of_checked_squares = checkedSquares;
             }
-            public Branch(Square startSquare, HashSet<int> checkedSquares, int nx, int ny, double[,] zvalues,double isolevel) :this(startSquare,checkedSquares) 
+            public Branch(Square startSquare, HashSet<int> checkedSquares, int nx, int ny, double[,] zvalues,double isolevel,XYPlotSeq myplot) :this(startSquare,checkedSquares) 
             {
                 this.nx = nx;
                 this.ny = ny;
                 this.zvalues = zvalues;
                 this.isolevel = isolevel;
+                this.myplot = myplot;
             }
 
             public IEnumerator<Square> GetEnumerator()
@@ -183,6 +185,7 @@ namespace XYPlotPluginSeq
                 { 
                     theCellOnTheleft = CheckTheSquare(currentSquare.n,currentSquare.m-1);
                     //determine the next square to go to, create it and put it into the currentBranch.list_of_squares
+
                     return theCellOnTheleft;
                 }
                 return false;
@@ -200,6 +203,7 @@ namespace XYPlotPluginSeq
                 if(n<0 || n>nx || m<0 || m>ny)return false; //is it within the borders of the nx*ny array of cells?
                 if (!currentBranch.list_of_checked_squares.Contains(ny * n + m)) return false; //if this cell is already checked?
                     return false;
+                // if (!IntersectionFound(n, m, zvalues, isolevel, out vals, out indx))
             }
             // (x,y) coordinates.
 
@@ -365,7 +369,7 @@ namespace XYPlotPluginSeq
                     //с номерами проверенных клеток, и значения числа квадратов вдоль осей X и Y для
                     //формирования номера (индекса) клетки ny * n + m, строго говоря, для этого нужено
                     //только число квадратов вдоль оси Y ny
-                    Branch newBranch = new Branch(new Square(n, m), checkedSquares,nx,ny, zvalues,isolevel);
+                    Branch newBranch = new Branch(new Square(n, m), checkedSquares,nx,ny, zvalues,isolevel,this);
                     IEnumerator<Square> nextSquare = newBranch.GetEnumerator();
                     while (nextSquare.MoveNext()) 
                     { 
