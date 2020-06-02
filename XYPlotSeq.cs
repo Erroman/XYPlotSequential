@@ -96,6 +96,8 @@ namespace XYPlotPluginSeq
             public int ny; //число квадратов по оси y
             public List<Square> list_of_squares;
             public HashSet<int> list_of_checked_squares;
+            public double[,] zvalues;
+            public double isolevel;
             public Branch(Square startSquare) 
             {
                 this.startSquare = startSquare;
@@ -106,10 +108,12 @@ namespace XYPlotPluginSeq
             {
                 list_of_checked_squares = checkedSquares;
             }
-            public Branch(Square startSquare, HashSet<int> checkedSquares, int nx, int ny):this(startSquare,checkedSquares) 
+            public Branch(Square startSquare, HashSet<int> checkedSquares, int nx, int ny, double[,] zvalues,double isolevel) :this(startSquare,checkedSquares) 
             {
                 this.nx = nx;
                 this.ny = ny;
+                this.zvalues = zvalues;
+                this.isolevel = isolevel;
             }
 
             public IEnumerator<Square> GetEnumerator()
@@ -144,13 +148,11 @@ namespace XYPlotPluginSeq
         };
         class SquareEnumerator : IEnumerator<Square>
         {
-            private Square startSquare;
-            private Branch currentBranch;
+            private readonly Branch currentBranch;
+            private readonly Square startSquare;
+            private readonly int nx; //число квадратов по оси х
+            private readonly int ny; //число квадратов по оси y
             private Square currentSquare = null;
-            private int n;
-            private int m;
-            private int nx; //число квадратов по оси х
-            private int ny; //число квадратов по оси y
             public SquareEnumerator(Branch branch,Square startSquare,int nx,int ny) 
             {
                 this.currentBranch = branch;
@@ -176,10 +178,13 @@ namespace XYPlotPluginSeq
                     return true;
                 }
                 else
-                //How can I judge that in currentSquare is the first basic square? By the StartingSquare field!
-                    if (currentSquare.StartingSquare)
+                //How can I judge that there is the first basic square in currentSquare ? By the StartingSquare field!
+                    if (currentSquare.StartingSquare) 
+                { 
+                    theCellOnTheleft = CheckTheSquare(currentSquare.n,currentSquare.m-1);
                     //determine the next square to go to, create it and put it into the currentBranch.list_of_squares
-                    return false;
+                    return theCellOnTheleft;
+                }
                 return false;
                 //{
                 //    n = 0; //calculate n
@@ -189,14 +194,20 @@ namespace XYPlotPluginSeq
                 //}
 
             }
+            bool theCellOnTheleft;
+            private bool CheckTheSquare(int n, int m) 
+            { 
+                if(n<0 || n>nx || m<0 || m>ny)return false; //is it within the borders of the nx*ny array of cells?
+                if (!currentBranch.list_of_checked_squares.Contains(ny * n + m)) return false; //if this cell is already checked?
+                    return false;
+            }
+            // (x,y) coordinates.
 
             public void Reset()
             {
                 throw new NotImplementedException();
             }
         }
-        private bool CheckTheSquare(int n,int m) { return false; }
-        // (x,y) coordinates.
         private List<PointD> GetPoints( double dx, double dy, double xmin, double ymin, int n, int m )
         {
             double[,] c = { { 0, 1f }, { 1f, 1f }, { 1f, 0 }, { 0, 0 }, { .5f, .5f } };
@@ -354,7 +365,7 @@ namespace XYPlotPluginSeq
                     //с номерами проверенных клеток, и значения числа квадратов вдоль осей X и Y для
                     //формирования номера (индекса) клетки ny * n + m, строго говоря, для этого нужено
                     //только число квадратов вдоль оси Y ny
-                    Branch newBranch = new Branch(new Square(n, m), checkedSquares,nx,ny);
+                    Branch newBranch = new Branch(new Square(n, m), checkedSquares,nx,ny, zvalues,isolevel);
                     IEnumerator<Square> nextSquare = newBranch.GetEnumerator();
                     while (nextSquare.MoveNext()) 
                     { 
