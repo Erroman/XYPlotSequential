@@ -213,7 +213,7 @@ namespace XYPlotPluginSeq
                 if (!currentBranch.myplot.IntersectionFound(n, m, currentBranch.zvalues, currentBranch.isolevel, out vals, out indx))
                     return null;
                 else
-                    next_square = new Square(n, m) { vals = vals,indx = indx };
+                    next_square = new Square(n, m) { vals = vals,indx = indx,StartingSquare = false };
                 return next_square;
             }
             // (x,y) coordinates.
