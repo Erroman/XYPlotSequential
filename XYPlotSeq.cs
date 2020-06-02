@@ -134,7 +134,7 @@ namespace XYPlotPluginSeq
             public int n; // №  квадрата в ряду по оси Х
             public int m; //  №  квадрата в столбце вдоль оси Y
             public double[] vals;
-            public double indx;
+            public byte indx;
             public bool StartingSquare;
             Square[]  neighbours = new Square[3];
             public Square PrevSquare;
@@ -193,7 +193,7 @@ namespace XYPlotPluginSeq
                     if (!(theCellAtTheleft == null))
                     {
                         currentSquare = theCellAtTheleft;
-                        return false; //should be true !
+                        return true; //should be true !
                     }
                     else 
                     {
@@ -201,7 +201,7 @@ namespace XYPlotPluginSeq
                         if (!(theCellAtTheTop == null))
                         {
                             currentSquare = theCellAtTheTop;
-                            return false; //should be true !
+                            return true; //should be true !
                         }
                         else
                         {
@@ -209,7 +209,7 @@ namespace XYPlotPluginSeq
                             if (!(theCellAtTheRight == null))
                             {
                                 currentSquare = theCellAtTheRight;
-                                return false; //should be true !
+                                return true; //should be true !
                             }
                             else
                             {
@@ -217,7 +217,7 @@ namespace XYPlotPluginSeq
                                 if (!(theCellAtTheBottom == null))
                                 {
                                     currentSquare = theCellAtTheBottom;
-                                    return false; //should be true !
+                                    return true; //should be true !
                                 }
                                 else
                                 {
@@ -420,7 +420,7 @@ namespace XYPlotPluginSeq
                     //с номерами проверенных клеток, и значения числа квадратов вдоль осей X и Y для
                     //формирования номера (индекса) клетки ny * n + m  и определения граничных клеток
                     //для области, в которой ведётся построение ветви функции
-                    Branch newBranch = new Branch(new Square(n, m), checkedSquares,nx,ny, zvalues,isolevel,this);
+                    Branch newBranch = new Branch(new Square(n, m) {StartingSquare=true,vals=vals,indx=indx}, checkedSquares,nx,ny, zvalues,isolevel,this);
                     IEnumerator<Square> nextSquare = newBranch.GetEnumerator();
                     while (nextSquare.MoveNext()) 
                     { 
@@ -429,7 +429,7 @@ namespace XYPlotPluginSeq
                         var xy = GetPoints(dx, dy, xmin, ymin, nextSquare.Current.n, nextSquare.Current.m);
 
                         // Получаем список точек для найденного квадрата.
-                        var vlist = GetVertList(isolevel, xy, vals);
+                        var vlist = GetVertList(isolevel, xy, nextSquare.Current.vals);
 
                         // Заполняем список точек кривой отрезками на основе 
                         // найденной конфигурации пересечения.
@@ -445,8 +445,8 @@ namespace XYPlotPluginSeq
 
                         while (_triTable[i, indx] != -1)
                         {
-                            pp.Add(vlist[_triTable[i, indx]]);
-                            pp.Add(vlist[_triTable[i + 1, indx]]);
+                            pp.Add(vlist[_triTable[i, nextSquare.Current.indx]]);
+                            pp.Add(vlist[_triTable[i + 1, nextSquare.Current.indx]]);
 
                             i += 2;
                         }
