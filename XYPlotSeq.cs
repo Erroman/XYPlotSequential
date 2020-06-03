@@ -1,4 +1,5 @@
-﻿#region Using
+﻿#define IMPLICIT_PLOT_WITH_NEW_MARCHING_SQUARES_ALGORITH
+#region Using
 
 using System;
 using System.Drawing;
@@ -555,6 +556,7 @@ namespace XYPlotPluginSeq
         private List<PointD> ImplicitPlot2dSeq(double dx, double dy, double xmin, double ymin, int nx, int ny, double[,] zvalues, double isolevel = 0)
         {
             var pp = new List<PointD>();
+            var list_of_line_segments = new List<PointD[]>();
             HashSet<int> checkedSquares = new HashSet<int>(); //номера проверенных  клеток
             for (var n = 0; n < nx; n++)
             {
@@ -1076,8 +1078,7 @@ namespace XYPlotPluginSeq
                     }
                 }
             }
-
-            //var points = ImplicitPlot2d( dx, dy, xmin, ymin, N, M, zvalues );
+#if IMPLICIT_PLOT_WITH_NEW_MARCHING_SQUARES_ALGORITH
             var points = ImplicitPlot2dSeq(dx, dy, xmin, ymin, N, M, zvalues);
 
             var list = new List<Line2D>( points.Count / 2 );
@@ -1088,6 +1089,18 @@ namespace XYPlotPluginSeq
 
                 list.Add( line );
             }
+#else
+            var points = ImplicitPlot2d( dx, dy, xmin, ymin, N, M, zvalues );
+            
+            var list = new List<Line2D>( points.Count / 2 );
+
+            for ( var n = 0; n < points.Count / 2; n++ )
+            {
+                var line = new Line2D { P1 = points[ 2 * n ], P2 = points[ 2 * n + 1 ] };
+
+                list.Add( line );
+            }
+#endif
 
             AddLinePlot( list );
         }
