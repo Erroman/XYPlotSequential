@@ -613,6 +613,9 @@ namespace XYPlotPluginSeq
                             i += 2;
                         }
                      }
+                    //Внесение полученного набора точек для сегмента кривой в список массивов
+                    list_of_line_segments.Add(pp.ToArray());
+
                 }
             }
 
