@@ -553,7 +553,7 @@ namespace XYPlotPluginSeq
 
             return pp;
         }
-        private List<PointD> ImplicitPlot2dSeq(double dx, double dy, double xmin, double ymin, int nx, int ny, double[,] zvalues, double isolevel = 0)
+        private List<PointD[]> ImplicitPlot2dSeq(double dx, double dy, double xmin, double ymin, int nx, int ny, double[,] zvalues, double isolevel = 0)
         {
             var pp = new List<PointD>();
             var list_of_line_segments = new List<PointD[]>();
@@ -615,11 +615,12 @@ namespace XYPlotPluginSeq
                      }
                     //Внесение полученного набора точек для сегмента кривой в список массивов
                     list_of_line_segments.Add(pp.ToArray());
+                    pp.Clear();
 
                 }
             }
 
-             return pp;
+             return list_of_line_segments;
         }
 
         private void AddLinePlot<T>( List<T> list )
@@ -1082,15 +1083,18 @@ namespace XYPlotPluginSeq
                 }
             }
 #if IMPLICIT_PLOT_WITH_NEW_MARCHING_SQUARES_ALGORITH
-            var points = ImplicitPlot2dSeq(dx, dy, xmin, ymin, N, M, zvalues);
+            var list_of_arays_of_points = ImplicitPlot2dSeq(dx, dy, xmin, ymin, N, M, zvalues);
 
-            var list = new List<Line2D>( points.Count / 2 );
-
-            for ( var n = 0; n < points.Count / 2; n++ )
-            {
-                var line = new Line2D { P1 = points[ 2 * n ], P2 = points[ 2 * n + 1 ] };
-
-                list.Add( line );
+            foreach (var array_of_points in list_of_arays_of_points) 
+            { 
+                var list = new List<Line2D>(array_of_points.Length / 2 );
+                
+                for ( var n = 0; n < array_of_points.Length / 2; n++ )
+                {
+                    var line = new Line2D { P1 = array_of_points[ 2 * n ], P2 = array_of_points[ 2 * n + 1 ] };
+                    list.Add( line );
+                }
+                AddLinePlot(list);
             }
 #else
             var points = ImplicitPlot2d( dx, dy, xmin, ymin, N, M, zvalues );
@@ -1103,9 +1107,10 @@ namespace XYPlotPluginSeq
 
                 list.Add( line );
             }
-#endif
+
 
             AddLinePlot( list );
+#endif
         }
 
 
