@@ -505,7 +505,7 @@ namespace XYPlotPluginSeq
             indx = GetIndex(vals, isolevel);
             return _edgeTable[indx] != 0; 
         }
-
+#if !IMPLICIT_PLOT_WITH_NEW_MARCHING_SQUARES_ALGORITH
         private List<PointD> ImplicitPlot2d( double dx, double dy, double xmin, double ymin, int nx, int ny, double[,] zvalues, double isolevel = 0 ) 
         {
             var pp = new List<PointD>();
@@ -553,7 +553,8 @@ namespace XYPlotPluginSeq
 
             return pp;
         }
-        private List<PointD[]> ImplicitPlot2dSeq(double dx, double dy, double xmin, double ymin, int nx, int ny, double[,] zvalues, double isolevel = 0)
+#endif
+        private List<PointD[]> ImplicitPlot2d(double dx, double dy, double xmin, double ymin, int nx, int ny, double[,] zvalues, double isolevel = 0)
         {
             var pp = new List<PointD>();
             var list_of_line_segments = new List<PointD[]>();
@@ -1083,7 +1084,7 @@ namespace XYPlotPluginSeq
                 }
             }
 #if IMPLICIT_PLOT_WITH_NEW_MARCHING_SQUARES_ALGORITH
-            var list_of_arays_of_points = ImplicitPlot2dSeq(dx, dy, xmin, ymin, N, M, zvalues);
+            var list_of_arays_of_points = ImplicitPlot2d(dx, dy, xmin, ymin, N, M, zvalues);
 
             foreach (var array_of_points in list_of_arays_of_points) 
             { 
@@ -1562,9 +1563,9 @@ namespace XYPlotPluginSeq
             }
         }
 
-        #endregion
+#endregion
 
-        #region Public methods
+#region Public methods
 
         public override RegionBase Clone()
         {
@@ -1650,9 +1651,9 @@ namespace XYPlotPluginSeq
             base.ToXml( storage, parsingContext );
         }
 
-        #endregion
+#endregion
 
-        #region Events handlers
+#region Events handlers
 
         public override void Dispose()
         {
@@ -1752,7 +1753,7 @@ namespace XYPlotPluginSeq
             g.SmoothingMode = smooth;
         }
 
-        #endregion
+#endregion
 
     }
 }
